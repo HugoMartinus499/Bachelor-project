@@ -1,7 +1,6 @@
 turtles-own
 [
-  peak? ;; indicates whether a turtle has reached a "peak",
-        ;; that is, it can no longer go "uphill" from where it stands
+  informed
 ]
 
 to setup
@@ -11,8 +10,8 @@ to setup
   ;set max-voting-age 100 ; Default maximum voting age
 
   create-turtles people [
-    let informed random 100  ; Random information score 1-100
-    set color scale-color red informed 1 100 ;; Map the score to a red gradient
+    set informed random 100  ; Random information score 1-100
+    set color scale-color blue informed 1 100 ;; Map the score to a red gradient
     set size 1.2
     setxy random-xcor random-ycor
   ]
@@ -26,26 +25,26 @@ to setup
 end
 
 to move  ;; turtle procedure
-  fd random 25
+  fd random 2
   ;; turn a random amount between -40 and 40 degrees,
   ;; keeping the average turn at 0
-  rt random 50
-  lt random 50
+  rt random 5
+  lt random 5
 end
 
 to go
+  ask turtles [ move ]
   ask turtles [
-    ;; remember where we started
-    let old-patch patch-here
-    ;; to use UPHILL, the turtles specify a patch variable
-    uphill pcolor
-    ;; are we still where we started? if so, we didn't
-    ;; move, so we must be on a peak
-    if old-patch = patch-here [ set peak? true ]
+    if pcolor = 120 [ ;; If the turtle is standing on a patch with color 120
+      set informed informed + 10 ;; Increase informed variable by 1
+      set color scale-color blue informed 1 100 ;; Update color based on new informed score
+    ]
+    ; place limits on the vote value
+  ask turtles with [ informed > 100.5 ] [ set informed 100.5 ]   ;; setting max vote
+  ask turtles with [ informed < 0.5 ] [ set informed 0.5 ]
   ]
   tick
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
