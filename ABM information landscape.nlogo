@@ -1,6 +1,8 @@
 turtles-own
 [
-  informed
+  information-level
+  trust
+  credibility
 ]
 
 to setup
@@ -10,16 +12,36 @@ to setup
   ;set max-voting-age 100 ; Default maximum voting age
 
   create-turtles people [
-    set informed random 100  ; Random information score 1-100
-    set color scale-color blue informed 1 100 ;; Map the score to a red gradient
-    set size 1.2
+    set information-level random 100  ; Random information score 1-100
+    set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
+    set credibility random 10
+    set size 1
     setxy random-xcor random-ycor
   ]
 
-  ;; make a landscape with hills and valleys
-  ask n-of 100 patches [ set pcolor 120 ]
-  ;; slightly smooth out the landscape
-  repeat 20 [ diffuse pcolor 1 ]
+
+  let n 12                     ;; Number of patches outwards for the gradient
+  let start-color [255 255 255]    ;; Starting color
+  let end-color [50 50 50]      ;; Ending color
+
+  ;; Loop over 1 out of every 100 patches
+  ask patches with [random 100 = 0] [
+    let center-patch self      ;; Set the current patch as the center patch
+
+    ;; Set the center patch color to red
+    set pcolor white
+
+    ;; Apply the gradient to surrounding patches within radius n (excluding the center patch)
+    ask patches with [distance center-patch <= n and self != center-patch] [
+      let dist (distance center-patch)
+      let ratio (dist / n)        ;; Ratio for interpolation between start and end color
+      let r (first start-color + ratio * (first end-color - first start-color))
+      let g (item 1 start-color + ratio * (item 1 end-color - item 1 start-color))
+      let b (last start-color + ratio * (last end-color - last start-color))
+
+      set pcolor rgb r g b       ;; Set patch color using interpolated RGB value
+    ]
+  ]
 
   reset-ticks
 end
@@ -35,15 +57,55 @@ end
 to go
   ask turtles [ move ]
   ask turtles [
-    if pcolor = 120 [ ;; If the turtle is standing on a patch with color 120
-      set informed informed + 10 ;; Increase informed variable by 1
-      set color scale-color blue informed 1 100 ;; Update color based on new informed score
-    ]
-    ; place limits on the vote value
-  ask turtles with [ informed > 100.5 ] [ set informed 100.5 ]   ;; setting max vote
-  ask turtles with [ informed < 0.5 ] [ set informed 0.5 ]
+    if any? other turtles-here with [ credible] [
+    ; Encountered another turtle, update trust
+    set trust trust + 0.005
   ]
+]
+
+  ask turtles [
+    if any? other turtles-here with [ uncredible] [
+    ; Encountered another turtle, update trust
+    set trust trust - 0.003
+  ]
+]
+
+  ask turtles [
+    if pcolor = red [ ;; If the turtle is standing on a patch with color 120
+      set information-level information-level + 15 ;; Increase informed variable by 1
+    ]
+    if pcolor = black [set information-level information-level - 0.1]
+    ; place limits on the vote value
+  ask turtles with [ information-level > 100.5 ] [ set information-level 100.5 ]   ;; setting max information level
+  ask turtles with [ information-level < 0.5 ] [ set information-level 0.5 ]
+  ]
+
+  ask turtles [set color scale-color blue information-level 1 100] ;; Update color based on new information level score
   tick
+end
+
+to-report well-informed
+  report information-level >= 80
+end
+
+to-report informed
+  report information-level >= 60 and information-level < 80
+end
+
+to-report under-informed
+  report information-level >= 40 and information-level < 60
+end
+
+to-report ignorant
+  report information-level >= 0.5 and information-level < 40
+end
+
+to-report credible
+  report credibility > 7
+end
+
+to-report uncredible
+  report credibility < 4
 end
 @#$#@#$#@
 GRAPHICS-WINDOW
@@ -121,6 +183,50 @@ People
 1
 NIL
 HORIZONTAL
+
+MONITOR
+22
+214
+112
+259
+well-informed
+count turtles with [well-informed]
+17
+1
+11
+
+MONITOR
+23
+259
+113
+304
+Informed
+count turtles with [informed]
+17
+1
+11
+
+MONITOR
+23
+304
+123
+349
+under-informed
+count turtles with [under-informed]
+17
+1
+11
+
+MONITOR
+23
+349
+124
+394
+ignorant
+count turtles with [ignorant]
+17
+1
+11
 
 @#$#@#$#@
 ## WHAT IS IT?

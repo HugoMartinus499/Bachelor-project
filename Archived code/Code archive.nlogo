@@ -12,6 +12,37 @@
     set credibility random 10
 
   ask turtles [ recolor ]
+
+
+  ;; make a landscape with hills and valleys
+  ask n-of 100 patches [ set pcolor red ]
+  ;; slightly smooth out the landscape
+  repeat 20 [ diffuse pcolor 1 ]
+
+to gradient-colors
+  let n 5                     ;; Number of patches outwards for the gradient
+  let start-color [255 0 0]    ;; Starting color (Red in RGB)
+  let end-color [0 0 255]      ;; Ending color (Blue in RGB)
+
+  ;; Loop over 1 out of every 100 patches
+  ask patches with [random 100 = 0] [
+    let center-patch self      ;; Set the current patch as the center patch
+
+    ;; Set the center patch color to red
+    set pcolor red
+
+    ;; Apply the gradient to surrounding patches within radius n (excluding the center patch)
+    ask patches with [distance center-patch <= n and self != center-patch] [
+      let dist (distance center-patch)
+      let ratio (dist / n)        ;; Ratio for interpolation between start and end color
+      let r (first start-color + ratio * (first end-color - first start-color))
+      let g (item 1 start-color + ratio * (item 1 end-color - item 1 start-color))
+      let b (last start-color + ratio * (last end-color - last start-color))
+
+      set pcolor rgb r g b       ;; Set patch color using interpolated RGB value
+    ]
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
