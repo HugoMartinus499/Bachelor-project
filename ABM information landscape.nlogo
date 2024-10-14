@@ -85,19 +85,19 @@ to go
 end
 
 to-report well-informed
-  report information-level >= 80
+  report information-level >= 75
 end
 
 to-report informed
-  report information-level >= 60 and information-level < 80
+  report information-level >= 50 and information-level < 75
 end
 
 to-report under-informed
-  report information-level >= 40 and information-level < 60
+  report information-level >= 25 and information-level < 50
 end
 
 to-report ignorant
-  report information-level >= 0.5 and information-level < 40
+  report information-level >= 0 and information-level < 25
 end
 
 to-report credible

@@ -75,7 +75,7 @@ to go
       set information-level information-level + 5 ;; Increase informed variable by 1
     ]
     if pcolor = black [set information-level information-level - 0.5]
-    ; place limits on the vot value
+    ; place limits on the information-level value
   ask turtles with [ information-level > 100.5 ] [ set information-level 100.5 ]   ;; setting max information level
   ask turtles with [ information-level < 0.5 ] [ set information-level 0.5 ]
   ]
@@ -85,7 +85,7 @@ to go
 end
 
 to-report well-informed
-  report information-level >= 80
+  report information-level >= 8
 end
 
 to-report informed
