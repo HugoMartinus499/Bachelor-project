@@ -12,7 +12,7 @@ to setup
   ;set max-voting-age 100 ; Default maximum voting age
 
   create-turtles people [
-    set information-level random 100  ; Random information score 1-100
+    set information-level 1  ; Random information score 1-100
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
     set credibility random 10
     set size 1
@@ -71,11 +71,11 @@ to go
 ]
 
   ask turtles [
-    if pcolor = red [ ;; If the turtle is standing on a patch with color 120
-      set information-level information-level + 15 ;; Increase informed variable by 1
+    if pcolor = white [ ;; If the turtle is standing on a patch with color 120
+      set information-level information-level + 5 ;; Increase informed variable by 1
     ]
-    if pcolor = black [set information-level information-level - 0.1]
-    ; place limits on the vote value
+    if pcolor = black [set information-level information-level - 0.5]
+    ; place limits on the information-level value
   ask turtles with [ information-level > 100.5 ] [ set information-level 100.5 ]   ;; setting max information level
   ask turtles with [ information-level < 0.5 ] [ set information-level 0.5 ]
   ]
@@ -224,6 +224,17 @@ MONITOR
 394
 ignorant
 count turtles with [ignorant]
+17
+1
+11
+
+MONITOR
+19
+423
+155
+468
+avg. information-level
+mean[information-level] of turtles
 17
 1
 11
