@@ -71,8 +71,8 @@ to go
 ]
 
   ask turtles [
-    if pcolor = white [ ;; If the turtle is standing on a patch with color 120
-      set information-level information-level + 5 ;; Increase informed variable by 1
+    if pcolor = white [ ;; If the turtle is standing on a patch with color white
+      set information-level information-level + 5 ;; Increase information-level variable by 5
     ]
     if pcolor = black [set information-level information-level - 0.5]
     ; place limits on the information-level value
@@ -185,10 +185,10 @@ NIL
 HORIZONTAL
 
 MONITOR
-22
-214
-112
-259
+101
+353
+203
+398
 well-informed
 count turtles with [well-informed]
 17
@@ -196,10 +196,10 @@ count turtles with [well-informed]
 11
 
 MONITOR
-23
-259
-113
-304
+103
+398
+203
+443
 Informed
 count turtles with [informed]
 17
@@ -207,10 +207,10 @@ count turtles with [informed]
 11
 
 MONITOR
-23
-304
-123
-349
+4
+353
+103
+398
 under-informed
 count turtles with [under-informed]
 17
@@ -218,10 +218,10 @@ count turtles with [under-informed]
 11
 
 MONITOR
-23
-349
-124
-394
+4
+398
+103
+443
 ignorant
 count turtles with [ignorant]
 17
@@ -229,15 +229,54 @@ count turtles with [ignorant]
 11
 
 MONITOR
-19
-423
-155
-468
+35
+597
+171
+642
 avg. information-level
 mean[information-level] of turtles
 17
 1
 11
+
+PLOT
+5
+449
+205
+599
+Avg. Information level
+NIL
+NIL
+0.0
+10000.0
+0.0
+100.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot mean[information-level] of turtles "
+
+PLOT
+3
+204
+203
+354
+Information level groups
+NIL
+NIL
+0.0
+10000.0
+0.0
+500.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -2758414 true "" "plot count turtles with [well-informed]"
+"pen-1" 1.0 0 -11033397 true "" "plot count turtles with [informed]"
+"pen-2" 1.0 0 -13345367 true "" "plot count turtles with [under-informed]"
+"pen-3" 1.0 0 -14730904 true "" "plot count turtles with [ignorant]"
 
 @#$#@#$#@
 ## WHAT IS IT?
