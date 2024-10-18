@@ -7,6 +7,6 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 
 ## Todo
 - [ ] Set up turtle to turtle information exchange mechanism
-- [ ] Adjust information brackets (size of population)
+- [x] Adjust information brackets (size of population)
 - [ ] Install values according to preferences based on information brackets
-- [ ] Change information level adjustment by reaching peaks
+- [x] Change information level adjustment by reaching peaks
