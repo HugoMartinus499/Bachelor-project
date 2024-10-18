@@ -10,4 +10,4 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [x] Adjust information brackets (size of population)
 - [ ] Install values according to preferences based on information brackets
 - [x] Change information level adjustment by reaching peaks
-- [ ] Make turtle-turtle exchange probabilistic
+- [x] Make turtle-turtle exchange probabilistic
