@@ -22,7 +22,7 @@ to setup
 
   let n 12                     ;; Number of patches outwards for the gradient
   let start-color [255 255 255]    ;; Starting color
-  let end-color [50 50 50]      ;; Ending color
+  let end-color [0 150 0]      ;; Ending color
 
   ;; Loop over 1 out of every 100 patches
   ask patches with [random 100 = 0] [
@@ -82,6 +82,51 @@ to go
 
   ask turtles [set color scale-color blue information-level 1 100] ;; Update color based on new information level score
   tick
+end
+
+to persuade
+  ifelse ignorant [
+    if any? other turtles-here with [under-informed or informed or well-informed] [
+      set information-level information-level + (0.01 * trust)
+    ]
+  ] [
+    ifelse under-informed [
+      if any? other turtles-here with [informed or well-informed] [
+        set information-level information-level + (0.01 * trust)
+      ]
+    ] [
+      ifelse informed [
+        if any? other turtles-here with [well-informed] [
+          set information-level information-level + (0.01 * trust)
+        ]
+      ] [
+        if any? other turtles-here with [well-informed] [
+          set information-level information-level + (0.01 * trust)
+        ]
+      ]
+    ]
+  ]
+    ifelse well-informed [
+    if any? other turtles-here with [ignorant or under-informed or informed] [
+      set information-level information-level - (0.01 * trust)
+    ]
+  ] [
+    ifelse informed [
+      if any? other turtles-here with [ignorant or under-informed] [
+        set information-level information-level - (0.01 * trust)
+      ]
+    ] [
+      ifelse under-informed [
+        if any? other turtles-here with [ignorant] [
+          set information-level information-level - (0.01 * trust)
+        ]
+      ] [
+        if any? other turtles-here with [ignorant] [
+          set information-level information-level - (0.01 * trust)
+        ]
+      ]
+    ]
+  ]
 end
 
 to-report well-informed
