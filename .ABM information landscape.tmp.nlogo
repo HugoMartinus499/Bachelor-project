@@ -56,6 +56,7 @@ end
 
 to go
   ask turtles [ move ]
+  ask turtles [persuade]
   ask turtles [
     if any? other turtles-here with [ credible] [
     ; Encountered another turtle, update trust
@@ -75,6 +76,7 @@ to go
       set information-level information-level + 5 ;; Increase information-level variable by 5
     ]
     if pcolor = black [set information-level information-level - 0.5]
+    if pcolor != white and pcolor != black [set information-level information-level - 0.001]
     ; place limits on the information-level value
   ask turtles with [ information-level > 100.5 ] [ set information-level 100.5 ]   ;; setting max information level
   ask turtles with [ information-level < 0.5 ] [ set information-level 0.5 ]
@@ -87,42 +89,58 @@ end
 to persuade
   ifelse ignorant [
     if any? other turtles-here with [under-informed or informed or well-informed] [
-      set information-level information-level + (0.01 * trust)
+      if random-float 1 < 0.25 [
+        set information-level information-level + (0.001 * trust)
+      ]
     ]
   ] [
     ifelse under-informed [
       if any? other turtles-here with [informed or well-informed] [
-        set information-level information-level + (0.01 * trust)
+        if random-float 1 < 0.1 [
+          set information-level information-level + (0.002 * trust)
+        ]
       ]
     ] [
       ifelse informed [
         if any? other turtles-here with [well-informed] [
-          set information-level information-level + (0.01 * trust)
+          if random-float 1 < 0.1 [
+            set information-level information-level + (0.0025 * trust)
+          ]
         ]
       ] [
         if any? other turtles-here with [well-informed] [
-          set information-level information-level + (0.01 * trust)
+          if random-float 1 < 0.01 [
+            set information-level information-level + (0.001 * trust)
+          ]
         ]
       ]
     ]
   ]
     ifelse well-informed [
     if any? other turtles-here with [ignorant or under-informed or informed] [
-      set information-level information-level + (0.01 * trust)
+      if random-float 1 < 0.005 [
+        set information-level information-level - (0.001 * trust)
+      ]
     ]
   ] [
     ifelse informed [
       if any? other turtles-here with [ignorant or under-informed] [
-        set information-level information-level + (0.01 * trust)
+        if random-float 1 < 0.25 [
+          set information-level information-level - (0.002 * trust)
+        ]
       ]
     ] [
       ifelse under-informed [
-        if any? other turtles-here with [well-informed] [
-          set information-level information-level + (0.01 * trust)
+        if any? other turtles-here with [ignorant] [
+          if random-float 1 < 0.1 [
+            set information-level information-level - (0.01 * trust)
+          ]
         ]
       ] [
-        if any? other turtles-here with [well-informed] [
-          set information-level information-level + (0.01 * trust)
+        if any? other turtles-here with [ignorant] [
+          if random-float 1 < 0.5 [
+            set information-level information-level - (0.01 * trust)
+          ]
         ]
       ]
     ]
@@ -280,7 +298,7 @@ MONITOR
 642
 avg. information-level
 mean[information-level] of turtles
-17
+5
 1
 11
 
