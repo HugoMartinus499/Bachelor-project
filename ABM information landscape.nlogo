@@ -80,7 +80,8 @@ to assign-opinions
       "Less government control of economy"
       "Pro free trade"
       "Against protectionism"
-      "Pro-choice, tax-increase to off-set debt and deficit"
+      "Pro-choice"
+      "tax-increase to off-set debt and deficit"
       "Soft on crime"
       "Less hawkish on military policy"
       "Favor other interventions instead of military"
@@ -110,7 +111,8 @@ to assign-opinions
       "Some control of economy"
       "Support free trade with caution"
       "Mixed stance on protectionism"
-      "Mixed on pro-choice and tax-increases"
+      "Mixed on pro-choice"
+      "Mixed on tax-increases"
       "Moderate stance on crime"
       "Neutral on military policy"
       "Favor both diplomacy and military"
@@ -140,7 +142,8 @@ to assign-opinions
       "More government control of economy"
       "Skeptical of free trade"
       "Pro-protectionism"
-      "Pro-life, lower taxes"
+      "Pro-life"
+      "lower taxes"
       "Tough on crime"
       "More hawkish on military policy"
       "Favor military interventions"
@@ -190,6 +193,7 @@ to go
 
   ask turtles [set color scale-color blue information-level 1 100] ;; Update color based on new information level score
   ask turtles [assign-opinions]
+  ask turtles [change-opinion]
   tick
 end
 
@@ -252,6 +256,43 @@ to persuade
       ]
     ]
   ]
+end
+
+to change-opinion
+  if pcolor = white [
+    if random-float 1 < 0.1 [
+      set government-intervention government-intervention + 0.75
+      set government-control-of-economy government-control-of-economy + 0.75
+      set free-trade free-trade - 0.75
+      set protectionism protectionism + 0.75
+      set pro-choice pro-choice - 0.75
+      set tax-increase-to-offset-debt-and-deficit tax-increase-to-offset-debt-and-deficit - 0.75
+      set crime-punishment-level crime-punishment-level + 0.75
+      set military-hawkishness military-hawkishness + 0.75
+      set non-military-interventions non-military-interventions - 0.75
+      set affirmative-action affirmative-action - 0.75
+      set prayer-in-schools prayer-in-schools + 0.75
+      set market-solution-to-healthcare market-solution-to-healthcare - 0.75
+      set moralistic-law moralistic-law + 0.75
+    ]
+  ]
+    if pcolor = black [
+      if random-float 1 < 0.5 [
+        set government-intervention government-intervention - 0.75
+        set government-control-of-economy government-control-of-economy - 0.75
+        set free-trade free-trade + 0.75
+        set protectionism protectionism - 0.75
+        set pro-choice pro-choice + 0.75
+        set tax-increase-to-offset-debt-and-deficit tax-increase-to-offset-debt-and-deficit + 0.75
+        set crime-punishment-level crime-punishment-level - 0.75
+        set military-hawkishness military-hawkishness - 0.75
+        set non-military-interventions non-military-interventions + 0.75
+        set affirmative-action affirmative-action + 0.75
+        set prayer-in-schools prayer-in-schools - 0.75
+        set market-solution-to-healthcare market-solution-to-healthcare + 0.75
+        set moralistic-law moralistic-law - 0.75
+      ]
+    ]
 end
 
 to-report well-informed
@@ -448,6 +489,35 @@ PENS
 "pen-1" 1.0 0 -11033397 true "" "plot count turtles with [informed]"
 "pen-2" 1.0 0 -13345367 true "" "plot count turtles with [under-informed]"
 "pen-3" 1.0 0 -14730904 true "" "plot count turtles with [ignorant]"
+
+MONITOR
+55
+926
+155
+971
+avg. pro choice
+mean[pro-choice] of turtles
+17
+1
+11
+
+PLOT
+0
+778
+200
+928
+avg pro-choice
+NIL
+NIL
+0.0
+10.0
+0.0
+10.0
+true
+false
+"" ""
+PENS
+"default" 1.0 0 -16777216 true "" "plot mean[pro-choice] of turtles"
 
 @#$#@#$#@
 ## WHAT IS IT?
