@@ -8,6 +8,9 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 ## Todo
 - [x] Set up turtle to turtle information exchange mechanism
 - [x] Adjust information brackets (size of population)
-- [ ] Install values according to preferences based on information brackets
+- [x] Install values according to preferences based on information brackets
 - [x] Change information level adjustment by reaching peaks
 - [x] Make turtle-turtle exchange probabilistic
+- [ ] Make information-bracket opinions more random and numeric
+- [ ] Make opinions random inside each bracket. Eg. information-level 75-100, random number between 1 and 40 on government intervention
+- [ ] Make the above subject to change according to information-level change
