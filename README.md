@@ -14,3 +14,4 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [x] Make information-bracket opinions more random and numeric
 - [x] Make opinions random inside each bracket. Eg. information-level 75-100, random number between 1 and 40 on government intervention
 - [x] Make the above subject to change according to information-level change
+- [ ] Add a CSV reading script for when the simulations are saved
