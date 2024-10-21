@@ -43,6 +43,60 @@ to gradient-colors
     ]
   ]
 end
+
+
+to assign-opinions
+  if information-level >= 75 [
+    set opinions [
+      "Less government intervention"
+      "Less government control of economy"
+      "Pro free trade"
+      "Against protectionism"
+      "Pro-choice, tax-increase to off-set debt and deficit"
+      "Soft on crime"
+      "Less hawkish on military policy"
+      "Favor other interventions instead of military"
+      "Accepting of affirmative action"
+      "Against prayer in schools"
+      "For market solutions to healthcare"
+      "Less moralistic in law"
+    ]
+  ]
+
+  if information-level >= 50 and information-level < 75 [
+    set opinions [
+      "Moderate government intervention"
+      "Some control of economy"
+      "Support free trade with caution"
+      "Mixed stance on protectionism"
+      "Mixed on pro-choice and tax-increases"
+      "Moderate stance on crime"
+      "Neutral on military policy"
+      "Favor both diplomacy and military"
+      "Neutral on affirmative action"
+      "Mixed stance on prayer in schools"
+      "Support a combination of market and government solutions for healthcare"
+      "Moderate stance on law and morality"
+    ]
+  ]
+
+  if information-level < 50 [
+    set opinions [
+      "More government intervention"
+      "More government control of economy"
+      "Skeptical of free trade"
+      "Pro-protectionism"
+      "Pro-life, lower taxes"
+      "Tough on crime"
+      "More hawkish on military policy"
+      "Favor military interventions"
+      "Against affirmative action"
+      "Support prayer in schools"
+      "For government-led healthcare solutions"
+      "More moralistic in law"
+    ]
+  ]
+end
 @#$#@#$#@
 GRAPHICS-WINDOW
 210

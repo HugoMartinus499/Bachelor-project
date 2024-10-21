@@ -4,6 +4,19 @@ turtles-own
   trust
   credibility
   opinions
+  government-intervention
+  government-control-of-economy
+  free-trade
+  protectionism
+  pro-choice
+  tax-increase-to-offset-debt-and-deficit
+  crime-punishment-level
+  military-hawkishness
+  non-military-interventions
+  affirmative-action
+  prayer-in-schools
+  market-solution-to-healthcare
+  moralistic-law
 ]
 
 to setup
@@ -13,7 +26,7 @@ to setup
   ;set max-voting-age 100 ; Default maximum voting age
 
   create-turtles people [
-    set information-level 1  ; Random information score 1-100
+    set information-level 1
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
     set credibility random 10
     set size 1
@@ -49,6 +62,19 @@ end
 
 to assign-opinions
   if information-level >= 75 [
+    set government-intervention 5 + random-float 31
+    set government-control-of-economy 5 + random-float 31
+    set free-trade 65 + random-float 31
+    set protectionism 5 + random-float 31
+    set pro-choice 75 + random-float 26
+    set tax-increase-to-offset-debt-and-deficit 70 + random-float 26
+    set crime-punishment-level 10 + random-float 31
+    set military-hawkishness 10 + random-float 31
+    set non-military-interventions 70 + random-float 26
+    set affirmative-action 70 + random-float 21
+    set prayer-in-schools 1 + random-float 21
+    set market-solution-to-healthcare 65 + random-float 31
+    set moralistic-law 5 + random-float 31
     set opinions [
       "Less government intervention"
       "Less government control of economy"
@@ -66,6 +92,19 @@ to assign-opinions
   ]
 
   if information-level >= 50 and information-level < 75 [
+    set government-intervention 35 + random-float 31
+    set government-control-of-economy 35 + random-float 31
+    set free-trade 35 + random-float 31
+    set protectionism 35 + random-float 31
+    set pro-choice 40 + random-float 36
+    set tax-increase-to-offset-debt-and-deficit 40 + random-float 31
+    set crime-punishment-level 40 + random-float 31
+    set military-hawkishness 40 + random-float 31
+    set non-military-interventions 40 + random-float 31
+    set affirmative-action 40 + random-float 31
+    set prayer-in-schools 20 + random-float 41
+    set market-solution-to-healthcare 45 + random-float 21
+    set moralistic-law 35 + random-float 31
     set opinions [
       "Moderate government intervention"
       "Some control of economy"
@@ -83,6 +122,19 @@ to assign-opinions
   ]
 
   if information-level < 50 [
+    set government-intervention 65 + random-float 31
+    set government-control-of-economy 65 + random-float 31
+    set free-trade 5 + random-float 31
+    set protectionism 65 + random-float 31
+    set pro-choice 5 + random-float 36
+    set tax-increase-to-offset-debt-and-deficit 10 + random-float 31
+    set crime-punishment-level 70 + random-float 31
+    set military-hawkishness 70 + random-float 31
+    set non-military-interventions 10 + random-float 31
+    set affirmative-action 10 + random-float 31
+    set prayer-in-schools 60 + random-float 41
+    set market-solution-to-healthcare 5 + random-float 41
+    set moralistic-law 65 + random-float 31
     set opinions [
       "More government intervention"
       "More government control of economy"
@@ -137,6 +189,7 @@ to go
   ]
 
   ask turtles [set color scale-color blue information-level 1 100] ;; Update color based on new information level score
+  ask turtles [assign-opinions]
   tick
 end
 
