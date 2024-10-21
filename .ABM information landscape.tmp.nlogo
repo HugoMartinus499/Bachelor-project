@@ -3,6 +3,7 @@ turtles-own
   information-level
   trust
   credibility
+
 ]
 
 to setup
@@ -170,6 +171,7 @@ end
 to-report uncredible
   report credibility < 4
 end
+
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
