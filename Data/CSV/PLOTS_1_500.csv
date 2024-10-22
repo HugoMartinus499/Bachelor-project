@@ -1,0 +1,37 @@
+"avg pro-choice"
+"""Avg. Information level"""
+"x min","x max","y min","y max","autoplot?","current pen","legend open?","number of pens"
+"0","10000","0","100","true","""default""","false","1"
+
+"pen name","pen down?","mode","interval","color","x"
+"""default""","true","0","1","0","0"
+
+"""default"""
+"x","y","color","pen down?"
+"0","1","0","true"
+
+"""Information level groups"""
+"x min","x max","y min","y max","autoplot?","current pen","legend open?","number of pens"
+"0","10000","0","825","true","""default""","false","4"
+
+"pen name","pen down?","mode","interval","color","x"
+"""default""","true","0","1","99","0"
+"""pen-1""","true","0","1","96","0"
+"""pen-2""","true","0","1","105","0"
+"""pen-3""","true","0","1","103","0"
+
+"""default""",,,,"""pen-1""",,,,"""pen-2""",,,,"""pen-3"""
+"x","y","color","pen down?","x","y","color","pen down?","x","y","color","pen down?","x","y","color","pen down?"
+"0","0","99","true","0","0","96","true","0","0","105","true","0","750","103","true"
+
+"""avg pro-choice"""
+"x min","x max","y min","y max","autoplot?","current pen","legend open?","number of pens"
+"0","10","0","10","true","""default""","false","1"
+
+"pen name","pen down?","mode","interval","color","x"
+"""default""","true","0","1","0","0"
+
+"""default"""
+"x","y","color","pen down?"
+"0","0","0","true"
+
