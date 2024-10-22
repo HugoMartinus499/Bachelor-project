@@ -23,6 +23,7 @@ to setup
   clear-all
   set-default-shape turtles "person"
 
+
   create-turtles people [
     set information-level 1
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
