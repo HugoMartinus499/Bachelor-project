@@ -23,7 +23,6 @@ to setup
   clear-all
   set-default-shape turtles "person"
 
-
   create-turtles people [
     set information-level 1
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
@@ -386,10 +385,10 @@ SLIDER
 179
 People
 People
-0
-500
-500.0
-1
+250
+1000
+250.0
+5
 1
 NIL
 HORIZONTAL
