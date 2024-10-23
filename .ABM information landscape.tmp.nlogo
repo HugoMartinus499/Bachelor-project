@@ -17,7 +17,7 @@ turtles-own
   prayer-in-schools
   market-solution-to-healthcare
   moralistic-law
-   government-intervention-weight
+  government-intervention-weight
   government-control-of-economy-weight
   free-trade-weight
   protectionism-weight
@@ -43,7 +43,21 @@ to setup
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
     set credibility random 10
     set size 1
-
+        ;; Assign random weights to each attribute
+    set government-intervention-weight random-float 1
+    set government-control-of-economy-weight random-float 1
+    set free-trade-weight random-float 1
+    set protectionism-weight random-float 1
+    set pro-choice-weight random-float 1
+    set tax-increase-to-offset-debt-and-deficit-weight random-float 1
+    set crime-punishment-level-weight random-float 1
+    set military-hawkishness-weight random-float 1
+    set non-military-interventions-weight random-float 1
+    set affirmative-action-weight random-float 1
+    set prayer-in-schools-weight random-float 1
+    set market-solution-to-healthcare-weight random-float 1
+    set moralistic-law-weight random-float 1
+    setxy random-xcor random-ycor
   ]
 
 
