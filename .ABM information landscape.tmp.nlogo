@@ -186,8 +186,7 @@ end
 
 to move  ;; turtle procedure
   fd random 2
-  ;; turn a random amount between -40 and 40 degrees,
-  ;; keeping the average turn at 0
+
   rt random 5
   lt random 5
 end
