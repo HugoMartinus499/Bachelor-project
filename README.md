@@ -15,4 +15,4 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [x] Make opinions random inside each bracket. Eg. information-level 75-100, random number between 1 and 40 on government intervention
 - [x] Make the above subject to change according to information-level change
 - [x] Add a CSV reading script for when the simulations are saved
-- [ ] Add weight of different opinions. Some people will value economics more when voting, some people will value education etc.
+- [x] Add weight of different opinions. Some people will value economics more when voting, some people will value education etc.
