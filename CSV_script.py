@@ -2,7 +2,7 @@ import os
 
 titles = ["RANDOM STATE", "GLOBALS", "TURTLES", "PATCHES", "LINKS", "PLOTS", "EXTENSIONS"]
 
-base_dir = "C:/Users/hugov/UNI/semester05/Bachelor-project/Data/"
+base_dir = "C:/Users/hugov/Github/Bachelor-project/Data/"
 txt_dir = os.path.join(base_dir, "TXT_world_files")
 csv_dir = os.path.join(base_dir, "CSV")
 
