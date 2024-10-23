@@ -17,7 +17,7 @@ turtles-own
   prayer-in-schools
   market-solution-to-healthcare
   moralistic-law
-   government-intervention-weight
+  government-intervention-weight
   government-control-of-economy-weight
   free-trade-weight
   protectionism-weight
@@ -35,6 +35,8 @@ turtles-own
 to setup
   clear-all
   set-default-shape turtles "person"
+  ;set min-voting-age 16 ; Default minimum voting age
+  ;set max-voting-age 100 ; Default maximum voting age
 
   create-turtles people [
     set information-level 1
@@ -414,10 +416,10 @@ SLIDER
 179
 People
 People
-250
-1000
-750.0
-5
+0
+500
+500.0
+1
 1
 NIL
 HORIZONTAL
