@@ -17,6 +17,19 @@ turtles-own
   prayer-in-schools
   market-solution-to-healthcare
   moralistic-law
+   government-intervention-weight
+  government-control-of-economy-weight
+  free-trade-weight
+  protectionism-weight
+  pro-choice-weight
+  tax-increase-to-offset-debt-and-deficit-weight
+  crime-punishment-level-weight
+  military-hawkishness-weight
+  non-military-interventions-weight
+  affirmative-action-weight
+  prayer-in-schools-weight
+  market-solution-to-healthcare-weight
+  moralistic-law-weight
 ]
 
 to setup
@@ -30,7 +43,7 @@ to setup
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
     set credibility random 10
     set size 1
-    setxy random-xcor random-ycor
+
   ]
 
 
@@ -153,6 +166,8 @@ to assign-opinions
       "More moralistic in law"
     ]
   ]
+
+
 end
 
 to move  ;; turtle procedure
@@ -318,7 +333,6 @@ end
 to-report uncredible
   report credibility < 4
 end
-
 @#$#@#$#@
 GRAPHICS-WINDOW
 210
@@ -491,10 +505,10 @@ PENS
 "pen-3" 1.0 0 -14730904 true "" "plot count turtles with [ignorant]"
 
 MONITOR
-45
-701
-145
-746
+57
+799
+157
+844
 avg. pro choice
 mean[pro-choice] of turtles
 17
@@ -502,10 +516,10 @@ mean[pro-choice] of turtles
 11
 
 PLOT
-0
-778
-200
-928
+2
+651
+202
+801
 avg pro-choice
 NIL
 NIL
