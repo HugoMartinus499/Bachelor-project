@@ -33,3 +33,6 @@ for i in range_1:
 # Example access to a specific data frame
 print(turtles_data.get("Turtles1_500"))
 
+class Voter(Agent):
+    def __init__ (self, unique_id, model):
+        super().__init__(unique_id, model)
