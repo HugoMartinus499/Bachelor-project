@@ -1,5 +1,11 @@
 import os
 import pandas as pd
+from mesa import Model, Agent
+from mesa.time import StagedActivation
+from mesa.space import MultiGrid
+from mesa.datacollection import DataCollector
+from typing import List
+import random
 
 base_dir = "C:/Users/hugov/Github/Bachelor-project/Data/CSV"
 
@@ -26,3 +32,4 @@ for i in range_1:
 
 # Example access to a specific data frame
 print(turtles_data.get("Turtles1_500"))
+
