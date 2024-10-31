@@ -33,6 +33,24 @@ for i in range_1:
 # Example access to a specific data frame
 print(turtles_data.get("Turtles1_500"))
 
+# Define the Voter class
 class Voter(Agent):
-    def __init__ (self, unique_id, model):
+    def __init__(self, unique_id, model, attributes):
         super().__init__(unique_id, model)
+        self.id = unique_id
+        # Initialize attributes from the DataFrame
+        for key, value in attributes.items():
+            setattr(self, key, value)
+
+# Create a model function to initialize Voter agents from the DataFrame
+def create_voters(model, data):
+    for index, row in turtles_data.iterrows():
+        # Use the 'who' column as the unique ID
+        unique_id = row['who']
+        # Extract relevant columns
+        attributes = row.iloc[13:].to_dict()  # Columns 14 and 18-43 (0-based indexing)
+        
+        # Initialize and add Voter agent to the model
+        voter = Voter(unique_id, model, attributes)
+        model.schedule.add(voter)
+        
