@@ -53,4 +53,9 @@ def create_voters(model, data):
         # Initialize and add Voter agent to the model
         voter = Voter(unique_id, model, attributes)
         model.schedule.add(voter)
-        
+
+class Candidate(Agent):
+    def __init__(self, unique_id, model, success: bool):
+        super().__init__(unique_id, model)
+        self.id = unique_id
+        self.success = success       
