@@ -41,6 +41,9 @@ class Voter(Agent):
         # Initialize attributes from the DataFrame
         for key, value in attributes.items():
             setattr(self, key, value)
+            
+    def evaluate_candidate(self, candidate: "Candidate"):
+        
 
 # Create a model function to initialize Voter agents from the DataFrame
 def create_voters(model, data):
