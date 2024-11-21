@@ -18,6 +18,7 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [✅] Add weight of different opinions. Some people will value economics more when voting, some people will value education etc.
 - [✅] Look to MateSelection ABM for Voter-Candidate interaction
 - [ ] Look into real policies and determine numeric value for parameters for each candidate
+- [ ] Add weight of attributes on voter agents
 - [ ] Change output to reflect both information level and both yes and no answers
 - [ ] Factor in weight when choosing candidate
 - [ ] Run NetLogo ABM sufficient times
