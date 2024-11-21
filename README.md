@@ -6,7 +6,7 @@ The aim of this project is to shine a light on democracy and alternatives and co
 This is done by making an Agent-Based Model to simulate the effects of governance in several different political systems
 
 ## Todo
-- [:heavy_check_mark:] Set up turtle to turtle information exchange mechanism
+- [ :heavy_check_mark: ] Set up turtle to turtle information exchange mechanism
 - [x] Adjust information brackets (size of population)
 - [x] Install values according to preferences based on information brackets
 - [x] Change information level adjustment by reaching peaks
