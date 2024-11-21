@@ -17,4 +17,6 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [x] Add a CSV reading script for when the simulations are saved
 - [x] Add weight of different opinions. Some people will value economics more when voting, some people will value education etc.
 - [x] Look to MateSelection ABM for Voter-Candidate interaction
-- [ ] Install candidates with values according to bool "success"
+- [ ] Look into real policies and determine numeric value for parameters for each candidate
+- [ ] Change output to reflect both information level and both yes and no answers
+- [ ] Factor in weight when choosing candidate
