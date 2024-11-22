@@ -21,4 +21,5 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [ ] Add weight of attributes on voter agents
 - [ ] Change output to reflect both information level and both yes and no answers
 - [ ] Factor in weight when choosing candidate
+- [ ] Make sure model can capture changing the political system
 - [ ] Run NetLogo ABM sufficient times
