@@ -21,5 +21,5 @@ This is done by making an Agent-Based Model to simulate the effects of governanc
 - [✅] Add weight of attributes on voter agents
 - [✅] Change output to reflect both information level and candidate choice
 - [✅] Factor in weight when choosing candidate
-- [ ] Make sure model can capture changing the political system
-- [ ] Run NetLogo ABM sufficient times
+- [✅] Change evaluate_candidate to euclidian distance
+- [✅] Run NetLogo ABM sufficient times
