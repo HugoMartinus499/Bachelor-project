@@ -65,3 +65,51 @@ class Candidate(Agent):
         self.id = unique_id
         self.success = success       
         
+def evaluate_candidate(self):
+        min_difference = float('inf')
+        chosen_candidate = None
+
+        for candidate in self.model.candidates:
+            # Calculate the weighted difference between voter and candidate attributes
+            difference = sum(
+                self.attributes[attr] * abs(self.attributes[attr] - getattr(candidate, attr))
+                for attr, weight_attr in zip(
+                    [
+                        "government-intervention",
+                        "government-control-of-economy",
+                        "free-trade",
+                        "protectionism",
+                        "pro-choice",
+                        "tax-increase-to-offset-debt-and-deficit",
+                        "crime-punishment-level",
+                        "military-hawkishness",
+                        "non-military-interventions",
+                        "affirmative-action",
+                        "prayer-in-schools",
+                        "market-solution-to-healthcare",
+                        "moralistic-law",
+                    ],
+                    [
+                        "government-intervention-weight",
+                        "government-control-of-economy-weight",
+                        "free-trade-weight",
+                        "protectionism-weight",
+                        "pro-choice-weight",
+                        "tax-increase-to-offset-debt-and-deficit-weight",
+                        "crime-punishment-level-weight",
+                        "military-hawkishness-weight",
+                        "non-military-interventions-weight",
+                        "affirmative-action-weight",
+                        "prayer-in-schools-weight",
+                        "market-solution-to-healthcare-weight",
+                        "moralistic-law-weight",
+                    ],
+                )
+                if attr in self.attributes and weight_attr in self.attributes
+            )
+
+            if difference < min_difference:
+                min_difference = difference
+                chosen_candidate = candidate
+
+        return chosen_candidate.unique_id  # Return the chosen candidate's unique ID
