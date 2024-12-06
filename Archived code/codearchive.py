@@ -113,3 +113,66 @@ def evaluate_candidate(self):
                 chosen_candidate = candidate
 
         return chosen_candidate.unique_id  # Return the chosen candidate's unique ID
+    
+    
+
+# Step 1: Apply Weighting System
+def apply_weighting(df):
+    df['weighted_votes'] = 1  # Each vote starts with 1
+    df.loc[df['information_level'] > 50, 'weighted_votes'] += 1  # Extra vote for info > 50
+    df.loc[df['information_level'] > 75, 'weighted_votes'] += 2  # Two more votes for info > 75
+    return df
+
+# Apply weighting to your dataset
+weighted_voting_results = combined_voting_results.copy()
+weighted_voting_results = apply_weighting(weighted_voting_results)
+
+# Step 2: Calculate Final Votes by Weighted System
+weighted_vote_counts = (
+    weighted_voting_results.groupby(['sim', 'Vote'])
+    .agg({'weighted_votes': 'sum'})
+    .unstack(fill_value=0)
+)
+
+if isinstance(weighted_vote_counts.columns, pd.MultiIndex):
+    weighted_vote_counts.columns = weighted_vote_counts.columns.droplevel(0)
+
+weighted_vote_counts['weighted'] = 1  # Indicate weighted
+
+# Calculate Final Votes by Unweighted System
+unweighted_vote_counts = (
+    combined_voting_results.groupby(['sim', 'Vote'])
+    .size()
+    .unstack(fill_value=0)
+)
+
+if isinstance(unweighted_vote_counts.columns, pd.MultiIndex):
+    unweighted_vote_counts.columns = unweighted_vote_counts.columns.droplevel(0)
+
+unweighted_vote_counts['weighted'] = 0  # Indicate unweighted
+
+# Combine Weighted and Unweighted Data
+comparison_df = pd.merge(
+    weighted_vote_counts.reset_index(),
+    unweighted_vote_counts.reset_index(),
+    on=['sim'],
+    suffixes=('_weighted', '_unweighted'),
+    how='outer'
+)
+
+# Fill missing values
+# comparison_df.fillna(0, inplace=True)
+
+# Step 3: Prepare Data for Regression
+comparison_df['vote_binary'] = np.where(
+    comparison_df['Candidate_1_weighted'] > comparison_df['Candidate_0_weighted'], 1, 0
+)
+
+# Step 4: Fit GLM with Logistic Regression
+formula = 'vote_binary ~ weighted'
+model = glm(formula=formula, data=comparison_df, family=sm.families.Binomial())
+result = model.fit()
+
+# Print summary of the results
+print(result.summary())
+
