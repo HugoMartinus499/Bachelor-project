@@ -216,7 +216,7 @@ to go
     if pcolor = black [set information-level information-level - 0.5]
     if pcolor != white and pcolor != black [set information-level information-level - 0.001]
     ; place limits on the information-level value
-  ask turtles with [ information-level > 100.5 ] [ set information-level 100 ]   ;; setting max information level
+  ask turtles with [ information-level > 100.5 ] [ set information-level 100. ]   ;; setting max information level
   ask turtles with [ information-level < 0.5 ] [ set information-level 0.5 ]
   ]
 
