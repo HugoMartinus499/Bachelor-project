@@ -176,3 +176,72 @@ result = model.fit()
 # Print summary of the results
 print(result.summary())
 
+# Rename the column
+combined_voting_results.rename(columns={'information-level': 'information_level'}, inplace=True)
+
+# Add a binary column for 'exclusion' based on information-level
+combined_voting_results['exclude'] = (combined_voting_results['information_level'] < 10).astype(int)
+
+# Create a new column where 'Vote' indicates the chosen candidate (binary: 0 for Candidate_0, 1 for Candidate_1)
+combined_voting_results['vote_binary'] = combined_voting_results['Vote'].apply(lambda x: 0 if x == 'Candidate_0' else 1)
+
+# Run GLM (logistic regression model)
+# Independent variables: 'exclude' (whether the vote was excluded due to information-level)
+# Dependent variable: 'vote_binary' (which candidate was chosen)
+formula = 'vote_binary ~ exclude'
+model = sm.formula.glm(formula=formula, data=combined_voting_results, family=sm.families.Binomial()).fit()
+
+# Print the summary to check the significance of 'exclude'
+print(model.summary())
+
+# Rename the column
+combined_voting_results.rename(columns={'information-level': 'information_level'}, inplace=True)
+
+# Add a binary column for 'exclusion' based on information-level
+combined_voting_results['exclude'] = (combined_voting_results['information_level'] < 10).astype(int)
+
+# Create a new column where 'Vote' indicates the chosen candidate (binary: 0 for Candidate_0, 1 for Candidate_1)
+combined_voting_results['vote_binary'] = combined_voting_results['Vote'].apply(lambda x: 0 if x == 'Candidate_0' else 1)
+
+# Run GLM (logistic regression model)
+# Independent variables: 'exclude' (whether the vote was excluded due to information-level) and other covariates
+# Dependent variable: 'vote_binary' (which candidate was chosen)
+formula = 'vote_binary ~ information_level + exclude'
+model = sm.formula.glm(formula=formula, data=combined_voting_results, family=sm.families.Binomial()).fit()
+
+# Print the summary to check the significance of 'exclude'
+print(model.summary())
+
+# Rename the column
+combined_voting_results.rename(columns={'information-level': 'information_level'}, inplace=True)
+
+# Add a binary column for 'multiplied' based on information-level
+combined_voting_results['multiplied'] = (combined_voting_results['information_level'] > 50).astype(int)
+
+# Create a new column where 'Vote' indicates the chosen candidate (binary: 0 for Candidate_0, 1 for Candidate_1)
+combined_voting_results['vote_binary'] = combined_voting_results['Vote'].apply(lambda x: 0 if x == 'Candidate_0' else 1)
+
+# Run GLM (logistic regression model)
+# Independent variables: 'multiplied' (whether the vote was multiplied due to information-level) and other covariates
+# Dependent variable: 'vote_binary' (which candidate was chosen)
+formula = 'vote_binary ~ multiplied'
+model = sm.formula.glm(formula=formula, data=combined_voting_results, family=sm.families.Binomial()).fit()
+
+# Print the summary to check the significance of 'multiplied'
+print(model.summary())
+restricted_suffrage_results['source'] = 'restricted'
+combined_voting_results['source'] = 'combined'
+
+combined_data = pd.concat([restricted_suffrage_results, combined_voting_results], ignore_index=True)
+combined_data['vote_binary'] = np.where(combined_data['Vote'] == 'Candidate_1', 1, 0)
+model = smf.logit(formula='vote_binary ~ source', data=combined_data)
+result = model.fit()
+print(result.summary())
+plural_voting_results['source'] = 'plural_voting'
+combined_voting_results['source'] = 'combined'
+
+combined_data = pd.concat([plural_voting_results, combined_voting_results], ignore_index=True)
+combined_data['vote_binary'] = np.where(combined_data['Vote'] == 'Candidate_1', 1, 0)
+model = smf.logit(formula='vote_binary ~ source', data=combined_data)
+result = model.fit()
+print(result.summary())
