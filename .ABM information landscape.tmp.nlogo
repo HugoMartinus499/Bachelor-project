@@ -35,6 +35,7 @@ turtles-own
 to setup
   clear-all
   set-default-shape turtles "person"
+
   create-turtles people [
     set information-level 1
     set color scale-color blue information-level 1 100 ;; Map the score to a blue gradient
@@ -183,6 +184,8 @@ end
 
 to move  ;; turtle procedure
   fd random 2
+  ;; turn a random amount between -40 and 40 degrees,
+  ;; keeping the average turn at 0
   rt random 5
   lt random 5
 end
